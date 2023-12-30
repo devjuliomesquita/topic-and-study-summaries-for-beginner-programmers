@@ -1,6 +1,40 @@
 # Generics
 
-A proposal for how to format markdown article files (e.g. blog posts) so they're readable and pretty in their plain-text form, **and** can output the necessary meta data without e.g. YAML front matter. This expands upon [markdown's original concept of readable plain-text files](https://daringfireball.net/projects/markdown/syntax#philosophy).
+3 explicar o pq eh melhor [salientar leitura velociadade e responsabilidade]
+
+---
+
+Para iniciar os estudos veja este cód logo abaixo:
+
+```java
+List ints = Arrays.asList( new Integer[] {
+  new Integer(1), new Integer(2), new Integer(3)
+});
+int s = o;
+for(Iterator it = ints.iterator(); it.hasNext(); ){
+  int n = ((Integer)it.next()).intValue();
+  s += n;
+}
+assert s == 6;
+```
+
+Agora veja este código:
+
+```java
+List<Integer> ints = Arrays.asList(1,2,3);
+int s = 0;
+for(int n : ints) {
+  s += n;
+}
+assert s == 6;
+```
+
+O que nós podemos perceber de diferença entre os dois códigos?
+
+Inicialmente a leitura o segundo bloco de código é bem mais simples e rápido de ler. Logo em seguida percebemos que a velocidade de código também melhora bastante.
+**Caso não tenha percebido os dois códigos fazem a mesma coisa...**
+
+Esse é o poder do Generics, perceba que agora é o codificador e não o compilador que é responsável por lembrar o tipo de elementos da lista.
 
 ```markdown
 # Title
@@ -55,7 +89,7 @@ The meta data (which is in the unordered list below the horizontal rule) only su
 
 JSON output:
 
-```json
+```
 {
   "title": "Title",
   "lead": "A lead paragraph.",
