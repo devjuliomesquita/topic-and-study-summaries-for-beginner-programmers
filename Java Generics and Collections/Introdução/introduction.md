@@ -61,11 +61,7 @@ int n = ints.get(0);
 //result: n = 1.
 ```
 
-> [!IMPORTANT]
->
-> This is an IMPORTANT note.
-
-> [!INFO]
+> [!NOTE]
 >
 > Aqui, o número inteiro 1 é adicionado diretamente à lista ints. Ao recuperar o valor, não é necessário chamar nenhum método adicional para convertê-lo de volta para um inteiro, já que foi adicionado como um objeto Integer diretamente na lista.
 
@@ -76,7 +72,7 @@ int n = ints.get(0).intValue();
 //result: n = 1.
 ```
 
-> [!INFO]
+> [!NOTE]
 >
 > green Neste caso, o número 1 é explicitamente encapsulado como um objeto Integer usando Integer.valueOf() antes de ser adicionado à lista. Ao recuperar o valor da lista, é necessário chamar .intValue() para converter o objeto Integer de volta para um tipo primitivo int.
 
