@@ -1,9 +1,5 @@
 # Generics
 
-3 explicar o pq eh melhor [salientar leitura velociadade e responsabilidade]
-
----
-
 Para iniciar os estudos veja este cód logo abaixo:
 
 ```java
@@ -34,159 +30,57 @@ O que nós podemos perceber de diferença entre os dois códigos?
 Inicialmente a leitura o segundo bloco de código é bem mais simples e rápido de ler. Logo em seguida percebemos que a velocidade de código também melhora bastante.
 **Caso não tenha percebido os dois códigos fazem a mesma coisa...**
 
-Esse é o poder do Generics, perceba que agora é o codificador e não o compilador que é responsável por lembrar o tipo de elementos da lista.
+Esse é o poder do Generics, perceba que agora é o codificador e não o compilador que é responsável por lembrar o tipo de elementos da lista. Assim existe a a garantia de não falhar na compilação.
 
-```markdown
-# Title
+_Garantia de ferro fundido_: as conversões implícitas adicionadas pela compilação de genéricos nunca falhar.
 
-Nicely formatted markdown articles---nice and readable in their plain-text form.
+## Boxing and Unboxing
 
-Valid, normal markdown.
+Este conceito é muito importante para o estudo de generics. Imagine assim, como a própria palavra já fala, pegue um caixa e coloque vários objetos do mesmo tipo dentro de uma caixa e feche. Caso depois você venha a abrir está mesma caixa terá os mesmos objetos que foram colocados anteriormente. Isto é basicamente o conceito de boxing e Unboxing respectivamente.
 
----
+A biblioteca Java.lang contém caixas de seus tipos primitivos tornando-se uma referência:
+| Tipo Primitivo | Referência |
+| -------- | -------- |
+| byte | Byte |
+| short | Short |
+| int | Integer |
+| long | Long |
+| float | Float |
+| double | Double |
+| boolean | Boolean |
+| char | Character |
 
-Johan S. Steinberg
+Conversão de um tipo primitivo para referência é o chamado boxing. O contrário é unboxing.
 
-- tagged: markdown, article, template, api, proposal, markdown-article-template, markdown-post-template
+Agora vamos ver como isso acontece no código:
+
+```java
+List<Integer> ints = new ArrayList<Integer>();
+ints.add(1);
+int n = ints.get(0);
+//result: n = 1.
 ```
 
-Meta data is added without YAML front matter (YFM) in a more markdowny way. It's reminiscent of YFM, but simpler and it's valid markdown. It looks and feels as a more natural part of markdown.
+> [!IMPORTANT]
+>
+> This is an IMPORTANT note.
 
-**The goal** is a markdown file-template for complete articles, including meta data, that is as readable and pretty as possible in plain-text, and when it's rendered without specific HTML/CSS (for instance at Github). And with a possible (Javascript, JSON, Graphql, ...) output that is fully usable in applications of any kind.
+> [!INFO]
+>
+> Aqui, o número inteiro 1 é adicionado diretamente à lista ints. Ao recuperar o valor, não é necessário chamar nenhum método adicional para convertê-lo de volta para um inteiro, já que foi adicionado como um objeto Integer diretamente na lista.
 
-## Background
-
-The problems with YAML front matter (and another front matter in another language):
-
-1. YFM isn't markdown and not a natural part of plain-text markdown.
-2. When markdown is converted to HTML in a generic context, YFM is at best output as a table at the top of the article (at Github for instance). In these general contexts YFM can lead to ugly, less readable HTML, or HTML errors.
-
-## Markdown Template Proposal
-
-```markdown
-# Title
-
-A lead paragraph.
-
-The content body in normal markdown.
-
----
-
-Optional Author Name,
-Several Names Separated By Comma
-
-- unordered list item: meta data
-- key: single value
-- comma separated: array, of, values
-- no value---true boolean,
+```java
+List<Integer> ints = new ArrayList<Integer>();
+ints.add(Integer.valueOf(1));
+int n = ints.get(0).intValue();
+//result: n = 1.
 ```
 
-The article ends with an horizontal rule immediately followed by the additional (meta) data.
+> [!INFO]
+>
+> green Neste caso, o número 1 é explicitamente encapsulado como um objeto Integer usando Integer.valueOf() antes de ser adicionado à lista. Ao recuperar o valor da lista, é necessário chamar .intValue() para converter o objeto Integer de volta para um tipo primitivo int.
 
-The meta data (which is in the unordered list below the horizontal rule) only support strings and arrays containing the former. The language in question must cast to other types if needed.
+Generics em Java insere automaticamente o boxing e unboxing quando apropriado. \_Se uma expressão e do tipo int aparecer onde um valor do tipo Integer é esperado, boxing o converte em **new Integer(e)** (no entanto, ele pode armazenar em cache valores que ocorrem com frequência
+ues). Se uma expressão e do tipo Integer aparecer onde um valor do tipo int é esperado, unboxing converte-o para a expressão **e.intValue()**.
 
-## Output
-
-JSON output:
-
-```
-{
-  "title": "Title",
-  "lead": "A lead paragraph.",
-  "body": "<p>The content body in normal markdown.</p>",
-  "by": ["Optional Author Name", "Several Names Separated By Comma"],
-  "unordered list item": "meta data",
-  "key": "single value",
-  "comma_separated": ["array", "of", "values"],
-  "no_value---true_boolean": "true"
-}
-```
-
-## The Subtitle Option
-
-```markdown
-# Title: Subtitle
-
-A lead paragraph.
-
-The content body in normal markdown.
-
----
-
-Optional Author Name,
-Several Names Separated By Comma
-
-- unordered list item: meta data
-- key: single value
-- comma separated: array, of, values
-- no value---true boolean,
-```
-
-## The Abstract Option
-
-An option to treat all markdown elements after the lead paragraph and before the first horizontal rule as the abstract.
-
-```markdown
-# Title
-
-A lead paragraph.
-
-An abstract consisting of any markdown elements.
-
----
-
-The content body in normal markdown.
-
----
-
-Optional Author Name,
-Several Names Separated By Comma
-
-- unordered list item: meta data
-- key: single value
-- comma separated: array, of, values
-- no value---true boolean,
-```
-
-## Simple implementation
-
-_Under construction! At the moment [Sapper](https://github.com/jssteinberg/sapper-floor-template) is used to test the implementation._
-
-See [src/utils/](https://github.com/jssteinberg/markdown-article-template/tree/main/src/utils) for a simple Javascript implementation using the marked library and regex of both markdown and HTML strings to create the output for an API. (A finer implementation should probably use remark/rehype...)
-
-Boolean and numbers are both output as strings.
-
-A collection of articles is by default sorted by title, then overridden by `sortBy`. So if any articles are missing a sortBy property they are moved to the end in order by title.
-
-`sortBy`:
-
-- `type`: a string of [Javascript type](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures) (it can be lowercase)
-
-```javascript
-// How to use utils!
-// `opt` parameter
-const opt = {
-  markedSetOptions: {
-    smartLists: true,
-    smartypants: true,
-    highlight: function (code, lang) {
-      return hljs.highlight(code, { language: lang }).value;
-    },
-  },
-  sortBy: {
-    property: ["edited", "redigert"],
-    type: "date",
-    index: -1,
-  },
-  // longOutput: true,
-};
-```
-
-[phrasing]: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#phrasing_content
-[org]: https://daringfireball.net/projects/markdown/syntax#philosophy
-
----
-
-Johan S. Steinberg
-
-- Tagged: markdown, article, template, api, proposal, markdown-article-template, markdown-post-template
+A chamada Integer.valueOf(1) tem efeito semelhante à expressão new Integer(1), **mas pode armazenar em cache alguns valores para melhorar o desempenho**.

@@ -4,7 +4,8 @@ O objetivo deste repositório em transferir conhecimento atravéz de resumos e e
 
 ## Summary | Conteúdo do livro
 
-Parte 1 - Generics
+<details>
+<summary>Parte 1 - Generics</summary>
 
 1. Subtipagem e Coringas
 2. Comparação e Limites
@@ -14,17 +15,19 @@ Parte 1 - Generics
 6. Reflexão
 7. Genérico Eficaz
 8. Design Patterns
+</details>
+<details>
+<summary>Parte 2 - Collections</summary>
 
-Parte 2 - Collections
-
-1. As principais interfaces do framework collections java
-2. Preliminares
-3. A interface collection
-4. Sets => Conjuntos
-5. Queues => Filas
-6. Lists => Listas
-7. Maps => Mapas
-8. A classe collections
+9. As principais interfaces do framework collections java
+10. Preliminares
+11. A interface collection
+12. Sets => Conjuntos
+13. Queues => Filas
+14. Lists => Listas
+15. Maps => Mapas
+16. A classe collections
+</details>
 
 ---
 
