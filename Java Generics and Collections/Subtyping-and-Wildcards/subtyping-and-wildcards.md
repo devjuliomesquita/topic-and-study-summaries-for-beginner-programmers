@@ -26,7 +26,7 @@ assert nums.toString().equals("[1, 2.654]");
 
 No código acima temos a subtipagem trabalhando de duas maneiras, veja como ela é chamada na primeira vez. O método é permitido pois nums de tipo List de Number é um subtipo de Collection de um Number e o número 1 é do tipo Integer que tem o subtipo Number. Na segunda chamada acontece o mesmo.
 
-## Boxing and Unboxing
+## Wildcards with extends
 
 Este conceito é muito importante para o estudo de generics. Imagine assim, como a própria palavra já fala, pegue um caixa e coloque vários objetos do mesmo tipo dentro de uma caixa e feche. Caso depois você venha a abrir está mesma caixa terá os mesmos objetos que foram colocados anteriormente. Isto é basicamente o conceito de boxing e Unboxing respectivamente.
 
