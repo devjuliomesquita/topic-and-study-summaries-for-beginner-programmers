@@ -10,11 +10,21 @@
 | List       | é subtipo de | Collection |
 | Collection | é subtipo de | Iterable   |
 
-Temos um outro conceito
+Temos um outro conceito chamado de **Substituição principal**:
+_uma variável de um determinado tipo pode receber um valor de qualquer subtipo
+desse tipo, e um método com um parâmetro de um determinado tipo pode ser invocado com um
+argumento de qualquer subtipo desse tipo._
 
-Esse é o poder do Generics, perceba que agora é o codificador e não o compilador que é responsável por lembrar o tipo de elementos da lista. Assim existe a a garantia de não falhar na compilação.
+Vejao explo abaixo:
 
-_Garantia de ferro fundido_: as conversões implícitas adicionadas pela compilação de genéricos nunca falhar.
+```java
+List<Number> nums = new ArrayList<Number>();
+nums.add(1);
+nums.add(2.654);
+assert nums.toString().equals("[1, 2.654]");
+```
+
+No código acima temos a subtipagem trabalhando de duas maneiras, veja como ela é chamada na primeira vez. O método é permitido pois nums de tipo List de Number é um subtipo de Collection de um Number e o número 1 é do tipo Integer que tem o subtipo Number. Na segunda chamada acontece o mesmo.
 
 ## Boxing and Unboxing
 
