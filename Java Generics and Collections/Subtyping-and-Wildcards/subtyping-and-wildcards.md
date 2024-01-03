@@ -54,3 +54,48 @@ Precisamos entender melhor qual a diferença entre os códigos. Por que houve um
 O erro aqui faz referência a uma tentativa de adicionar um valor a lista de nums. Quando você declara uma lista usando _`List<? extends E>`_, está indicando que a lista é de qualquer tipo desconhecido que extende de _'E'_. Então não é possível adicionar uma valor a essa lista pois não se sabe o seu subtipo exato.
 
 ## Wildcards with Super
+
+Nesta sessão vamos tratar o problema mencionado anteriormente. Vimos que _`List<? extends E>`_ significa que _'?'_ pode significar qualquer um subtipo de _'E'_ mas se o parametro do método mudar para _`List<? super E>`_ o contexto muda, agora significa que _'?'_ pode ser de qualquer superclasse de _'E'_. No anterior que poderiamos apenas acessar os elementos do subtipo de _'E'_ agora podemos adicionar elementos do subtipo de _'E'_.
+
+Veja o código abaixo:
+
+```java
+// Lista com curinga "extends"
+public static void addElements(List<? extends Number> list) {
+  // Não é possível adicionar elementos apenas ler
+  for (Number num : list) {
+      System.out.println(num);
+  }
+}
+
+// Lista com curinga "super"
+public static void addToList(List<? super Integer> list) {
+  // É possível adicionar elementos
+  list.add(5);
+  list.add(10);
+  // Não é possível ler elementos diretamente dessa lista
+  // No entanto, podemos ler os elementos através de um Object
+  for (Object obj : list) {
+      System.out.println(obj);
+  }
+}
+
+public static void main(String[] args) {
+  List<Integer> integerList = new ArrayList<>();
+  integerList.add(1);
+  integerList.add(2);
+
+  List<Double> doubleList = new ArrayList<>();
+  doubleList.add(1.5);
+  doubleList.add(2.5);
+
+  //List<? extends T>
+  addElements(integerList);
+  addElements(doubleList);
+
+  //List<? super T>
+  List<Number> numberList = new ArrayList<>();
+  addToList(integerList);
+  addToList(numberList);
+}
+```
