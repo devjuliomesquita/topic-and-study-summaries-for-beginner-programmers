@@ -74,7 +74,7 @@ int n = ints.get(0).intValue();
 
 > [!NOTE]
 >
-> green Neste caso, o número 1 é explicitamente encapsulado como um objeto Integer usando Integer.valueOf() antes de ser adicionado à lista. Ao recuperar o valor da lista, é necessário chamar .intValue() para converter o objeto Integer de volta para um tipo primitivo int.
+> Neste caso, o número 1 é explicitamente encapsulado como um objeto Integer usando Integer.valueOf() antes de ser adicionado à lista. Ao recuperar o valor da lista, é necessário chamar .intValue() para converter o objeto Integer de volta para um tipo primitivo int.
 
 Generics em Java insere automaticamente o boxing e unboxing quando apropriado. Se uma expressão e do tipo int aparecer onde um valor do tipo Integer é esperado, boxing o converte em **new Integer(e)** (no entanto, ele pode armazenar em cache valores que ocorrem com frequência
 ues). Se uma expressão e do tipo Integer aparecer onde um valor do tipo int é esperado, unboxing converte-o para a expressão **e.intValue()**.
