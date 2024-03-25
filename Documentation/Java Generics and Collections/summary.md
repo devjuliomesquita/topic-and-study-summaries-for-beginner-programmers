@@ -1,6 +1,7 @@
 # Java Generics and Collections
 
-O objetivo deste repositório em transferir conhecimento atravéz de resumos e exemplos que foram pensados para um melhor entendimento e absorção do conteúdo. Como visto iremos ter como material base o livro **Java Generics and Collections | O'REILLY.**
+O objetivo deste repositório em transferir conhecimento atravéz de resumos e exemplos que foram pensados para um melhor entendimento e absorção do conteúdo. 
+Como visto iremos ter como material base o livro **Java Generics and Collections | O'REILLY.**
 
 ## Summary | Conteúdo do livro
 
