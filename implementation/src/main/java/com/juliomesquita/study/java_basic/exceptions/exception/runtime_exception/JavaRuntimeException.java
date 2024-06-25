@@ -18,8 +18,8 @@ public class JavaRuntimeException {
             return a / b;
         } catch (ArithmeticException e) {
             e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
     //    Treatment with throw

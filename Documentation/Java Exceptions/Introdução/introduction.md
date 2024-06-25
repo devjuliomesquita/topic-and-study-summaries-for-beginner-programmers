@@ -109,6 +109,9 @@ public static Integer sumInteger (List<Integer> ints){
 
  - Qual a diferença entre um erro e uma exception?
  -  Diferençca entre checked e unchecked
+ - Quando utilizar um Try catch lançar ou não uma expection
+ - Quem irá tratar?
+ - Uso do Finally 
 
 Assim nos resta algumas perguntas:
 

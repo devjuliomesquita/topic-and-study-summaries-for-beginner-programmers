@@ -26,9 +26,9 @@ class JavaRuntimeExceptionTest {
 
     @Test
     public void testRuntimeExceptionTreatmentWithTryCatch(){
-        int value = JavaRuntimeException.div(1, 0);
-
-        assertEquals(0, value);
+        String messageError = assertThrows(ArithmeticException.class,
+                () -> JavaRuntimeException.div(1, 0)).getMessage();
+        assertEquals("/ by zero",messageError);
     }
 
     @Test
