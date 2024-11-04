@@ -52,14 +52,52 @@ public class ArrayOneDimension {
         return false;
     }
 
+//    public static int removeItemsArray(int[] nums){
+//        int count = nums.length;
+//        int ultimoNum = 101;
+//        int[] newArray = new int[nums.length];
+//        int index = 0;
+//
+//        for (int i = 0; i< nums.length ; i++){
+//
+//            if(nums[i] == ultimoNum){
+//                count--;
+//            } else {
+//                ultimoNum = nums[i];
+//                newArray[index] = ultimoNum;
+//                index ++;
+//            }
+//        }
+//        return count;
+//    }
+
+    public static int removeItemsArray(int[] nums) {
+        int count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[count] = nums[i];
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int missingNumber(final int[] nums){
+        int res = nums.length;
+        for(int i = 0; i < nums.length; i++){
+            res += i - nums[i];
+        }
+        return res;
+    }
+
     public String toArrayString() {
         StringBuilder response = new StringBuilder();
         response.append("[");
-        for (int i = 0; i < limit-1; i++) {
+        for (int i = 0; i < limit - 1; i++) {
             response.append(this.list[i]);
             response.append(", ");
         }
-        response.append(this.list[limit-1]);
+        response.append(this.list[limit - 1]);
         response.append("]");
         return response.toString();
     }

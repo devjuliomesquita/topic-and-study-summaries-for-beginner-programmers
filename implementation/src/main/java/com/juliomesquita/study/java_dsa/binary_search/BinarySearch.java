@@ -1,5 +1,7 @@
 package com.juliomesquita.study.java_dsa.binary_search;
 
+import java.util.Arrays;
+
 public final class BinarySearch {
     private BinarySearch() {
     }
@@ -43,31 +45,73 @@ public final class BinarySearch {
 //    }
 
 
+//    public static void binarySearch(final int[] itens, final int item){
+//        int baixo = 0;
+//        int alto = itens.length-1;
+//        int interacoes = 0;
+//        while(baixo<=alto){
+//            interacoes++;
+//            int meio = (baixo+ alto) / 2;
+//            int chute = itens[meio];
+//            if(chute == item){
+//                System.out.println("o item encontra-se na posição :: %s".formatted(meio+1));
+//                System.out.println("foi realizado essa quantidade de iterações :: %s".formatted(interacoes));
+//                return;
+//            }
+//            if(chute > item){
+//                alto = meio -1;
+//            }
+//            if(chute < item){
+//                baixo = meio +1;
+//            }
+//        }
+//        System.out.println("o item :: %s não se encontra na lista".formatted(item));
+//    }
 
+//    public static int binarySearch(final int[] itens, final int item) {
+//        return Arrays.binarySearch(itens, item);
+//    }
 
-
-
-
-    public static void binarySearch(final int[] itens, final int item){
+    public static int searchInsertPosition(int[] nums, int target) {
         int baixo = 0;
-        int alto = itens.length-1;
-        int interacoes = 0;
-        while(baixo<=alto){
-            interacoes++;
-            int meio = (baixo+ alto) / 2;
-            int chute = itens[meio];
-            if(chute == item){
-                System.out.println("o item encontra-se na posição :: %s".formatted(meio+1));
-                System.out.println("foi realizado essa quantidade de iterações :: %s".formatted(interacoes));
-                return;
+        int alto = nums.length - 1;
+        while (baixo <= alto) {
+            int meio = (baixo + alto) / 2;
+            int chute = nums[meio];
+            if (chute == target) {
+                return meio;
             }
-            if(chute > item){
-                alto = meio -1;
+            if (chute > target) {
+                alto = meio - 1;
             }
-            if(chute < item){
-                baixo = meio +1;
+            if (chute < target) {
+                baixo = meio + 1;
             }
         }
-        System.out.println("o item :: %s não se encontra na lista".formatted(item));
+        return baixo;
     }
+
+    public static int mySqrt(final int x) {
+        if (x == 0) {
+            return 0;
+        }
+        int baixo = 1;
+        int alto = x;
+
+        while(baixo <= alto){
+            int meio = baixo + (alto - baixo) / 2;
+            if(meio == x / meio){
+                return meio;
+            }
+            if(meio < x /meio){
+                baixo = meio + 1;
+            }
+            if(meio > x / meio){
+                alto = meio -1;
+            }
+        }
+        return alto;
+    }
+
+
 }

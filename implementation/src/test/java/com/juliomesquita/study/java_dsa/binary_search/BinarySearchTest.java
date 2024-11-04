@@ -12,7 +12,14 @@ class BinarySearchTest {
         final int expectedNum = 1;
 
         //when
-        BinarySearch.binarySearch(expectedNums, expectedNum);
+//        BinarySearch.binarySearch(expectedNums, expectedNum);
+    }
+
+    @Test
+    void searchInsertPosition(){
+        final int[] input = {1,3,5,6};
+        final int response = BinarySearch.searchInsertPosition(input, 7);
+        assertEquals(3,  response);
     }
 
 }

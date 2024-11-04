@@ -62,5 +62,20 @@ class ArrayOneDimensionTest {
         );
     }
 
+    @Test
+    void removeItemsArray(){
+        //given
+        int[] nums = {1,1,2};
+        ArrayOneDimension.removeItemsArray(nums);
+    }
+
+    @Test
+    void missingNumber(){
+        int[] nums = {3,0,1};
+        final int expectedNumn = 2;
+        final int response = ArrayOneDimension.missingNumber(nums);
+        assertEquals(expectedNumn, response);
+    }
+
 
 }
